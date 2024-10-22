@@ -1,7 +1,7 @@
 import "./index.css";
-import MyWeb from "./components/MyWeb";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import { MyWeb } from "./components/index";
 
 function App() {
   return (
