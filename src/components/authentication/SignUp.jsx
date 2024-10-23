@@ -28,7 +28,7 @@ export default function SignUp() {
       <p className="text-xl">al;ready have an account??</p>
       <Link to="/login">signin</Link>
       {error && <p className="text-red-700">{error}</p>}
-      <form onSubmit={() => handleSubmit(signUp())}>
+      <form onSubmit={() => handleSubmit(signUp)}>
         <Input
           label="name:"
           myClass="w-full"

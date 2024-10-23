@@ -34,7 +34,7 @@ export default function Login() {
       <p className="text-xl">don't have an account?</p>
       <Link to="/signup">signup</Link>
       {error && <p className="text-red-700">{error}</p>}
-      <form onSubmit={() => handleSubmit(login())}>
+      <form onSubmit={() => handleSubmit(login)}>
         <Input
           label="email:"
           myClass="w-full"
