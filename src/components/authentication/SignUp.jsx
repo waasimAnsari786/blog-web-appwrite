@@ -10,6 +10,7 @@ export default function SignUp() {
   const dispatch = useDispatch();
   const [error, setError] = useState();
   const { register, handleSubmit } = useForm();
+
   const signUp = async (data) => {
     setError("");
     try {

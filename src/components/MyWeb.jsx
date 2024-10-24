@@ -4,6 +4,7 @@ import Footer from "./footer/Footer";
 import authService from "../appwrite/auth";
 import { useDispatch } from "react-redux";
 import { login, logout } from "../features/authSlice";
+import { Outlet } from "react-router-dom";
 
 export default function MyWeb() {
   const [loading, setLoading] = useState(true);
@@ -30,9 +31,7 @@ export default function MyWeb() {
   return (
     <>
       <Header />
-      <main>
-        <p>outlet</p>
-      </main>
+      <main>{Outlet}</main>
       <Footer />
     </>
   );

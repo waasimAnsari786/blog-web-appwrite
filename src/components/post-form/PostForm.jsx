@@ -4,10 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import uploadFile from "../../appwrite/uploadFile";
 import service from "../../appwrite/config";
-import Input from "../reuseableComponents/Input";
-import RTE from "../RTE";
-import Select from "../reuseableComponents/Select";
-import Button from "../reuseableComponents/Button";
+import { Input, RTE, Select, Button } from "../index";
 
 export default function PostForm({ post }) {
   const { register, handleSubmit, watch, setValue, control, getValues } =

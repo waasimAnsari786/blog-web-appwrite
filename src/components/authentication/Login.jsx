@@ -4,8 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../appwrite/auth";
 import { login as storeLogin } from "../../features/authSlice";
-import { Input } from "../reuseableComponents/Input";
-import { Button } from "../reuseableComponents/Button";
+import { Input, Button } from "../index";
 
 export default function Login() {
   const navigate = useNavigate();
