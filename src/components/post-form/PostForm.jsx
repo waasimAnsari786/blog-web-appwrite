@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -22,8 +22,8 @@ export default function PostForm({ post }) {
 
   const submit = async (data) => {
     if (post) {
-      const file = (await data.image[0])
-        ? uploadFile.uploadFile(data.image[0])
+      const file = data.image[0]
+        ? await uploadFile.uploadFile(data.image[0])
         : null;
 
       if (file) uploadFile.deleteFile(post.featuredImage);
@@ -36,12 +36,13 @@ export default function PostForm({ post }) {
       }
     } else {
       const file = await uploadFile.uploadFile(data.image[0]);
+
       if (file) {
         const fileID = file.$id;
         data.featuredImage = fileID;
         const dbPost = await service.createPost({
           ...data,
-          userID: userData.$id,
+          userId: userData.$id,
         });
 
         if (dbPost) {
@@ -56,13 +57,24 @@ export default function PostForm({ post }) {
       return value.trim().toLocaleLowerCase().replace(/\s/g, "-");
     return "";
   }, []);
+
+  useEffect(() => {
+    const subscription = watch((value, { name }) => {
+      if (name === "title") {
+        setValue("slug", slugTransform(value.title), { shouldValidate: true });
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [watch, slugTransform, setValue]);
+
   return (
-    <form onSubmit={() => handleSubmit(submit)} className="flex flex-wrap">
+    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
       <div className="w-2/3 p-2">
         <Input
           label="Title"
           placeholder="your title"
-          myClass="mb-4"
+          myClass="mb-4 text-black"
           {...register("title", {
             required: true,
           })}
@@ -71,7 +83,7 @@ export default function PostForm({ post }) {
         <Input
           label="Slug"
           placeholder="slug"
-          myClass="mb-4"
+          myClass="mb-4 text-black"
           {...register("slug", {
             required: true,
           })}
@@ -97,7 +109,7 @@ export default function PostForm({ post }) {
           myClass="mb-4"
           accept="image/png , image/jpg , image/jpeg , image/gif"
           {...register("image", {
-            required: !post,
+            required: true,
           })}
         />
 
@@ -114,11 +126,11 @@ export default function PostForm({ post }) {
         <Select
           options={["active", "inactive"]}
           label="Status"
-          myClass="mb-4"
+          myClass="mb-4 text-black"
           {...register("status", { required: true })}
         />
 
-        <Button type="submit" myClass="w-full">
+        <Button type="submit" myClass="w-full text-white">
           {post ? "Update" : "Submit"}
         </Button>
       </div>

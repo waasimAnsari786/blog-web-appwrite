@@ -81,11 +81,6 @@ export class Service {
     } catch (error) {
       console.log(error);
     }
-    const getedPosts = await this.databases.listDocuments(
-      envImport.appwriteDatabaseID,
-      envImport.appwriteCollectionID,
-      queries
-    );
   }
 }
 const service = new Service();

@@ -16,7 +16,7 @@ export default function EditPost() {
         }
       });
     }
-    if (posts) {
+    if (post) {
       navigate("/");
     }
   }, [slug, navigate]);

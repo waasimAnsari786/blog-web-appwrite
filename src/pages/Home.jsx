@@ -3,11 +3,14 @@ import service from "../appwrite/config";
 import { Container, PostCard } from "../components/index";
 
 export default function Home() {
-  const [posts, setPosts] = useState();
+  const [posts, setPosts] = useState([]);
   useEffect(() => {
-    service.getPosts().then((posts) => {
-      if (posts) setPosts(posts.documents);
-    });
+    service
+      .getPosts()
+      .then((posts) => {
+        if (posts) setPosts(posts.documents);
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   if (posts.length === 0) {

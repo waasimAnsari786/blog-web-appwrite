@@ -18,11 +18,9 @@ export class UploadFile {
         ID.unique(),
         file
       );
-
       return uploadedFile;
     } catch (error) {
       console.log(error);
-      return false;
     }
   }
 
@@ -36,14 +34,13 @@ export class UploadFile {
       return deletedFile;
     } catch (error) {
       console.log(error);
-      return false;
     }
   }
 
-  getFilePreview(fileID) {
+  getFilePreview(fileId) {
     const previewedFile = this.storage.getFilePreview(
       envImport.appwriteBucketID,
-      fileID
+      fileId
     );
     return previewedFile;
   }

@@ -19,15 +19,12 @@ export class AuthService {
         password,
         name
       );
-
       if (userAccount) {
-        // use another method
-        return this.login(email, password);
-      } else {
+        this.login({ email, password });
         return userAccount;
       }
     } catch (error) {
-      console.log(er);
+      console.log(error);
     }
   }
 

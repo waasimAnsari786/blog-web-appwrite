@@ -17,7 +17,7 @@ export default function MyWeb() {
         if (userData) {
           dispatch(login(userData));
         } else {
-          dispatch(logout());
+          dispatch(logout);
         }
       })
       .catch((error) => console.log(error))
@@ -25,13 +25,13 @@ export default function MyWeb() {
   }, []);
 
   if (loading) {
-    <div>loading...</div>;
+    return <div>loading...</div>;
   }
 
   return (
     <>
       <Header />
-      <main>{Outlet}</main>
+      <Outlet />
       <Footer />
     </>
   );

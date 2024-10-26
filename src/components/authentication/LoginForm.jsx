@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import authService from "../../appwrite/auth";
 import { login as storeLogin } from "../../features/authSlice";
+import { Input, Button } from "../index";
 
-export default function SignUp() {
+export default function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [error, setError] = useState();
   const { register, handleSubmit } = useForm();
+  const [error, setError] = useState();
 
-  const signUp = async (data) => {
+  const login = async (data) => {
     setError("");
     try {
-      const userData = await authService.createAccount(data);
-      if (userData) {
-        dispatch(storeLogin(userData));
-        navigate("/");
+      const session = await authService.login(data);
+      if (session) {
+        const userData = await authService.getCurrentUser();
+        if (userData) {
+          dispatch(storeLogin(userData));
+          navigate("/");
+        }
       }
     } catch (error) {
       setError(error.message);
@@ -26,19 +30,13 @@ export default function SignUp() {
   return (
     <div>
       <p className="text-3xl font-bold">logo</p>
-      <p className="text-xl">al;ready have an account??</p>
-      <Link to="/login">signin</Link>
+      <p className="text-xl">don't have an account?</p>
+      <Link to="/signup">signup</Link>
       {error && <p className="text-red-700">{error}</p>}
-      <form onSubmit={() => handleSubmit(signUp)}>
-        <Input
-          label="name:"
-          myClass="w-full"
-          placeholder="your name"
-          {...register("name", { required: true })}
-        />
+      <form onSubmit={handleSubmit(login)}>
         <Input
           label="email:"
-          myClass="w-full"
+          myClass="w-full text-black"
           placeholder="your email"
           {...register("email", {
             required: true,
@@ -54,14 +52,14 @@ export default function SignUp() {
 
         <Input
           label="password:"
-          myClass="w-full"
+          myClass="w-full text-black"
           placeholder="your password"
-          {...register("password", { required: true })}
           type="password"
+          {...register("password", { required: true })}
         />
 
-        <Button type="submit" myClass="w-full">
-          sign up
+        <Button type="submit" myClass="w-full text-white">
+          sign in
         </Button>
       </form>
     </div>

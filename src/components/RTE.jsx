@@ -5,16 +5,20 @@ import { Controller } from "react-hook-form";
 export default function RTE({ name, control, label, defaultVal = "" }) {
   return (
     <div className="w-full">
-      <label htmlFor="">{label}</label>
+      <label htmlFor="" className="text-white">
+        {label}
+      </label>
       <Controller
         name={name}
         control={control}
         render={({ field: { onChange } }) => (
           <Editor
+            apiKey="93scoanow47vrrrvyr82c6hev5986utjouss0sgblmx1sj3y"
             initialValue={defaultVal}
             init={{
+              initialValue: defaultVal,
               height: 500,
-              menubar: false,
+              menubar: true,
               plugins: [
                 "advlist",
                 "autolink",
@@ -43,7 +47,7 @@ export default function RTE({ name, control, label, defaultVal = "" }) {
               content_style:
                 "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
             }}
-            onEditorChange={onchange}
+            onEditorChange={onChange}
           />
         )}
       />

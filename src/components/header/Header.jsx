@@ -12,7 +12,7 @@ export default function Header() {
     { name: "Login", slug: "/login", active: !authStatus },
     { name: "SignUp", slug: "/signup", active: !authStatus },
     { name: "Add Post", slug: "/add-post", active: authStatus },
-    { name: "All Post", slug: "/all-post", active: authStatus },
+    { name: "All Post", slug: "/all-posts", active: authStatus },
   ];
 
   return (
@@ -26,7 +26,7 @@ export default function Header() {
           </Link>
 
           <div>
-            <ul>
+            <ul className="flex gap-3">
               {navItems.map((item) =>
                 item.active ? (
                   <li key={item.name}>
@@ -37,7 +37,7 @@ export default function Header() {
                 ) : null
               )}
               {authStatus && (
-                <li key={item.name}>
+                <li>
                   <LogoutBtn />
                 </li>
               )}

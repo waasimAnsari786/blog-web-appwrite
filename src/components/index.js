@@ -3,8 +3,8 @@ import Footer from "./footer/Footer";
 import Container from "./reuseableComponents/Container";
 import MyWeb from "./MyWeb";
 import LogoutBtn from "./reuseableComponents/LogoutBtn";
-import { Login as LoginFromAuth } from "./authentication/Login";
-import { SignUp as SignUpFromAuth } from "./authentication/SignUp";
+import LoginForm from "./authentication/LoginForm";
+import SignUpForm from "./authentication/SignUpForm";
 import AuthProtectedLayout from "./authentication/AuthProtectedLayout";
 import PostForm from "./post-form/PostForm";
 import PostCard from "./posts/PostCard";
@@ -16,9 +16,9 @@ import AddPost from "../pages/AddPost";
 import AllPosts from "../pages/AllPosts";
 import EditPost from "../pages/EditPost";
 import Home from "../pages/Home";
-import { Login as LoginPage } from "../pages/Login";
+import LoginPage from "../pages/LoginPage";
+import SignUpPage from "../pages/SignUpPage";
 import Post from "../pages/Post";
-import { SignUp as SignUpPage } from "../pages/SignUp";
 
 export {
   Header,
@@ -26,8 +26,8 @@ export {
   Container,
   MyWeb,
   LogoutBtn,
-  LoginFromAuth,
-  SignUpFromAuth,
+  LoginForm,
+  SignUpForm,
   AuthProtectedLayout,
   PostForm,
   PostCard,
